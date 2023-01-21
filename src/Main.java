@@ -1,5 +1,10 @@
+import chessGame.ChessGame;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        ChessGame chessGame = new ChessGame();
+        System.out.println("App has not crashed");
     }
+
 }
