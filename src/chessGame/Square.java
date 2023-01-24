@@ -8,9 +8,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Square extends JButton{
-    private Point coordinates;
+    private final Point coordinates;
     private Piece piece;
     public Square(Piece piece, Point coordinates) {
         this.piece = piece;
@@ -24,8 +25,7 @@ public class Square extends JButton{
         return null;
     }
     public boolean isEmpty(){
-        if (this.piece == null) return true;
-        return false;
+        return this.piece == null;
     }
     public void setPiece(Piece piece) {
         this.piece = piece;
@@ -45,6 +45,10 @@ public class Square extends JButton{
         }
 
         this.setIcon(new ImageIcon(pieceImage));
+    }
+    public ArrayList<Point> getPossibleMoves(Square[][] board){
+
+        return piece.getPossibleMoves(board, coordinates);
     }
 
 
