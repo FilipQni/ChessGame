@@ -10,13 +10,34 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Square extends JButton{
+public class Square extends JButton {
+    private static final Color DARK_SQUARE_COLOR = new Color(181, 135, 99, 255);
+    private static final Color BRIGHT_SQUARE_COLOR = new Color(240, 218, 181, 255);
     private final Point coordinates;
     private Piece piece;
+    private boolean isBlack;
+
     public Square(Piece piece, Point coordinates) {
         this.piece = piece;
         this.coordinates = coordinates;
+        this.isBlack = (coordinates.x + coordinates.y) % 2 == 0;
+        if (this.isBlack) setBackground(DARK_SQUARE_COLOR);
+        else setBackground(BRIGHT_SQUARE_COLOR);
     }
+
+    public Piece getPiece() {
+        return this.piece;
+    }
+
+    public void removePiece() {
+        this.piece = null;
+        this.setIcon(null);
+    }
+
+    public boolean isSquareBlack() {
+        return this.isBlack;
+    }
+
     public Point getCoordinates() {
         return coordinates;
     }
@@ -51,5 +72,12 @@ public class Square extends JButton{
         return piece.getPossibleMoves(board, coordinates);
     }
 
+    public void uncolorTheSquare() {
+        if (isBlack) setBackground(DARK_SQUARE_COLOR);
+        else setBackground(BRIGHT_SQUARE_COLOR);
+    }
 
+    public void colorTheSquare() {
+        setBackground(Color.RED);
+    }
 }
