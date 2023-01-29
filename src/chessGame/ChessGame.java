@@ -90,6 +90,8 @@ public class ChessGame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Square clickedSquare = (Square) e.getSource();
         if (!clickedSquare.isEmpty() && blackTurn == clickedSquare.isPieceBlack()) {
+            uncolorPossibleMovesSquares();
+            possibleMoves.clear();
             possibleMoves = clickedSquare.getPossibleMoves(board);
             System.out.println("You can move that piece: " + clickedSquare.getCoordinates().toString());
             colorPossibleMovesSquares();
@@ -98,11 +100,14 @@ public class ChessGame implements ActionListener {
         else {
             if(possibleMoves.contains(clickedSquare.getCoordinates())){
                 clickedSquare.setPiece(previousSquare.getPiece());
+                clickedSquare.setPieceHasMoved();
                 previousSquare.removePiece();
                 previousSquare = null;
-                uncolorPossibleMovesSquares();
                 blackTurn = !blackTurn;
             }
+            uncolorPossibleMovesSquares();
+            possibleMoves.clear();
+
         }
 
 
