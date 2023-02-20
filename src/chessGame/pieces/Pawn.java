@@ -3,20 +3,21 @@ package chessGame.pieces;
 import chessGame.Square;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Pawn extends Piece {
     private final int moveDirection;
 
-    public Pawn(boolean isBlack) {
-        super(isBlack);
+    public Pawn(boolean isBlack, Point coordinates) {
+        super(isBlack, coordinates);
         if (isBlack) moveDirection = -1;
         else moveDirection = 1;
     }
 
     @Override
-    public ArrayList<Point> getPossibleMoves(Square[][] board, Point coordinates) {
-        ArrayList<Point> possibleMoves = new ArrayList<>();
+    public List<Point> getPossibleMoves(Square[][] board) {
+        List<Point> possibleMoves = new LinkedList<>();
         Point possibleMove = new Point(coordinates);
 
         //Move

@@ -3,16 +3,17 @@ package chessGame.pieces;
 import chessGame.Square;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Rook extends Piece {
-    public Rook(boolean isBlack) {
-        super(isBlack);
+    public Rook(boolean isBlack, Point coordinates) {
+        super(isBlack, coordinates);
     }
 
     @Override
-    public ArrayList<Point> getPossibleMoves(Square[][] board, Point coordinates) {
-        ArrayList<Point> possibleMoves = new ArrayList<>();
+    public List<Point> getPossibleMoves(Square[][] board) {
+        List<Point> possibleMoves = new LinkedList<>();
         Point possibleMove = new Point(coordinates);
 
         //up
@@ -29,7 +30,7 @@ public class Rook extends Piece {
         }
 
         //down
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.y--;
         while (this.isPositionOnTheBoard(possibleMove)) {
             if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
@@ -43,7 +44,7 @@ public class Rook extends Piece {
         }
 
         //left
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.x--;
         while (this.isPositionOnTheBoard(possibleMove)) {
             if (!board[possibleMove.x][possibleMove.y].isEmpty()) {

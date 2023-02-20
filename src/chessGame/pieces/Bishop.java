@@ -3,16 +3,17 @@ package chessGame.pieces;
 import chessGame.Square;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Bishop extends Piece {
-    public Bishop(boolean isBlack) {
-        super(isBlack);
+    public Bishop(boolean isBlack, Point coordinates) {
+        super(isBlack, coordinates);
     }
     @Override
-    public ArrayList<Point> getPossibleMoves(Square[][] board, Point coordinates) {
-        ArrayList<Point> possibleMoves = new ArrayList<>();
-        Point possibleMove = new Point(coordinates);
+    public List<Point> getPossibleMoves(Square[][] board) {
+        List<Point> possibleMoves = new LinkedList<>();
+        Point possibleMove = new Point(this.coordinates);
 
         //right up
         possibleMove.x++;

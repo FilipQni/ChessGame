@@ -3,16 +3,17 @@ package chessGame.pieces;
 import chessGame.Square;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Queen extends Piece{
-    public Queen(boolean isBlack) {
-        super(isBlack);
+    public Queen(boolean isBlack, Point coordinates) {
+        super(isBlack, coordinates);
     }
 
     @Override
-    public ArrayList<Point> getPossibleMoves(Square[][] board, Point coordinates) {
-        ArrayList<Point> possibleMoves = new ArrayList<>();
+    public List<Point> getPossibleMoves(Square[][] board) {
+        LinkedList<Point> possibleMoves = new LinkedList<>();
         Point possibleMove = new Point(coordinates);
 
         //up
@@ -29,7 +30,7 @@ public class Queen extends Piece{
         }
 
         //down
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.y--;
         while (this.isPositionOnTheBoard(possibleMove)) {
             if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
@@ -43,7 +44,7 @@ public class Queen extends Piece{
         }
 
         //left
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.x--;
         while (this.isPositionOnTheBoard(possibleMove)) {
             if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
@@ -57,7 +58,7 @@ public class Queen extends Piece{
         }
 
         //right
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.x++;
         while (this.isPositionOnTheBoard(possibleMove)) {
             if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
@@ -72,7 +73,7 @@ public class Queen extends Piece{
 
 
         //right up
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.x++;
         possibleMove.y++;
         while (this.isPositionOnTheBoard(possibleMove)){
@@ -88,7 +89,7 @@ public class Queen extends Piece{
         }
 
         //left up
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.x--;
         possibleMove.y++;
         while (this.isPositionOnTheBoard(possibleMove)){
@@ -104,7 +105,7 @@ public class Queen extends Piece{
         }
 
         //left down
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.x--;
         possibleMove.y--;
         while (this.isPositionOnTheBoard(possibleMove)){
@@ -120,7 +121,7 @@ public class Queen extends Piece{
         }
 
         //right down
-        possibleMove.setLocation(coordinates);
+        possibleMove.setLocation(this.coordinates);
         possibleMove.x++;
         possibleMove.y--;
         while (this.isPositionOnTheBoard(possibleMove)){
