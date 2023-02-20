@@ -28,6 +28,39 @@ public class King extends Piece {
             }
         }
 
+        if (!this.hasMoved) {
+            castlingMove(board, possibleMoves);
+        }
+
         return possibleMoves;
+    }
+
+    private void castlingMove(Square[][] board, LinkedList<Point> possibleMoves) {
+        if (board[1][this.coordinates.y].isEmpty()
+                && board[2][this.coordinates.y].isEmpty()
+                && board[3][this.coordinates.y].isEmpty()
+                && !board[0][this.coordinates.y].isEmpty()
+                && !board[0][this.coordinates.y].getPiecehasMoved()) {
+            possibleMoves.add(new Point(2, coordinates.y));
+        }
+        if (board[5][this.coordinates.y].isEmpty()
+                && board[6][this.coordinates.y].isEmpty()
+                && !board[7][this.coordinates.y].isEmpty()
+                && !board[7][this.coordinates.y].getPiecehasMoved()) {
+            possibleMoves.add(new Point(6, coordinates.y));
+        }
+    }
+
+    @Override
+    public void move(Square[][] board, Point coordinates) {
+        super.move(board, coordinates);
+        if(!hasMoved){
+            if (coordinates.x == 6) {
+                board[5][coordinates.y].movePieceHere(board, board[7][coordinates.y]);
+            }
+            if (coordinates.x == 2) {
+                board[3][coordinates.y].movePieceHere(board, board[0][coordinates.y]);
+            }
+        }
     }
 }
