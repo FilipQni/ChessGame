@@ -1,10 +1,10 @@
 package chessGame.pieces;
 
-import chessGame.Square;
-
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
+
+import static chessGame.ChessGame.*;
 
 public class Pawn extends Piece {
     private final int moveDirection;
@@ -17,19 +17,20 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public List<Point> getPossibleMoves(Square[][] board) {
+    public List<Point> getPossibleMoves() {
         List<Point> possibleMoves = new LinkedList<>();
         Point possibleMove = new Point(coordinates);
 
         //Move
         possibleMove.y += this.moveDirection;
-        if (this.isPositionOnTheBoard(possibleMove) && board[possibleMove.x][possibleMove.y].isEmpty()) {
+        if (isPositionOnTheBoard(possibleMove) && isPositionEmpty(possibleMove)) {
             possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
-        }
-        if (!this.hasMoved) {
-            possibleMove.y += this.moveDirection;
-            if (this.isPositionOnTheBoard(possibleMove) && board[possibleMove.x][possibleMove.y].isEmpty()) {
-                possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
+
+            if (!this.hasMoved) {
+                possibleMove.y += this.moveDirection;
+                if (isPositionOnTheBoard(possibleMove) && isPositionEmpty(possibleMove)) {
+                    possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
+                }
             }
         }
 
@@ -37,21 +38,21 @@ public class Pawn extends Piece {
         possibleMove.setLocation(coordinates);
         possibleMove.y += this.moveDirection;
         possibleMove.x--;
-        if (canPawnAttackThisSquare(board, possibleMove))
+        if (canPawnAttackThisSquare(possibleMove))
             possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
 
         possibleMove.setLocation(coordinates);
         possibleMove.y += this.moveDirection;
         possibleMove.x++;
-        if (canPawnAttackThisSquare(board, possibleMove))
+        if (canPawnAttackThisSquare(possibleMove))
             possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
 
         return possibleMoves;
     }
 
-    private boolean canPawnAttackThisSquare(Square[][] board, Point squareCoordinates) {
-        return (this.isPositionOnTheBoard(squareCoordinates)
-                && !board[squareCoordinates.x][squareCoordinates.y].isEmpty()
-                && this.isBlack != board[squareCoordinates.x][squareCoordinates.y].isPieceBlack());
+    private boolean canPawnAttackThisSquare(Point squareCoordinates) {
+        return (isPositionOnTheBoard(squareCoordinates)
+                && !isPositionEmpty(squareCoordinates)
+                && this.isBlack != isPieceBlack(squareCoordinates));
     }
 }

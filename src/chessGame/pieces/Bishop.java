@@ -6,22 +6,24 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
+import static chessGame.ChessGame.*;
+
 public class Bishop extends Piece {
     public Bishop(boolean isBlack, Point coordinates) {
         super(isBlack, coordinates);
         this.symbol = 'B';
     }
     @Override
-    public List<Point> getPossibleMoves(Square[][] board) {
+    public List<Point> getPossibleMoves() {
         List<Point> possibleMoves = new LinkedList<>();
         Point possibleMove = new Point(this.coordinates);
 
         //right up
         possibleMove.x++;
         possibleMove.y++;
-        while (this.isPositionOnTheBoard(possibleMove)){
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)){
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
@@ -35,9 +37,9 @@ public class Bishop extends Piece {
         possibleMove.setLocation(coordinates);
         possibleMove.x--;
         possibleMove.y++;
-        while (this.isPositionOnTheBoard(possibleMove)){
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)){
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
@@ -51,9 +53,9 @@ public class Bishop extends Piece {
         possibleMove.setLocation(coordinates);
         possibleMove.x--;
         possibleMove.y--;
-        while (this.isPositionOnTheBoard(possibleMove)){
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)){
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
@@ -67,9 +69,9 @@ public class Bishop extends Piece {
         possibleMove.setLocation(coordinates);
         possibleMove.x++;
         possibleMove.y--;
-        while (this.isPositionOnTheBoard(possibleMove)){
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)){
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
@@ -81,4 +83,5 @@ public class Bishop extends Piece {
 
         return possibleMoves;
     }
+
 }

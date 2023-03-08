@@ -1,10 +1,11 @@
 package chessGame.pieces;
 
 import chessGame.Square;
-
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
+
+import static chessGame.ChessGame.*;
 
 public class Rook extends Piece {
     public Rook(boolean isBlack, Point coordinates) {
@@ -13,15 +14,15 @@ public class Rook extends Piece {
     }
 
     @Override
-    public List<Point> getPossibleMoves(Square[][] board) {
+    public List<Point> getPossibleMoves() {
         List<Point> possibleMoves = new LinkedList<>();
         Point possibleMove = new Point(coordinates);
 
         //up
         possibleMove.y++;
-        while (this.isPositionOnTheBoard(possibleMove)) {
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)) {
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
@@ -33,9 +34,9 @@ public class Rook extends Piece {
         //down
         possibleMove.setLocation(this.coordinates);
         possibleMove.y--;
-        while (this.isPositionOnTheBoard(possibleMove)) {
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)) {
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
@@ -47,9 +48,9 @@ public class Rook extends Piece {
         //left
         possibleMove.setLocation(this.coordinates);
         possibleMove.x--;
-        while (this.isPositionOnTheBoard(possibleMove)) {
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)) {
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
@@ -61,9 +62,9 @@ public class Rook extends Piece {
         //right
         possibleMove.setLocation(coordinates);
         possibleMove.x++;
-        while (this.isPositionOnTheBoard(possibleMove)) {
-            if (!board[possibleMove.x][possibleMove.y].isEmpty()) {
-                if (this.isBlack != board[possibleMove.x][possibleMove.y].isPieceBlack())
+        while (isPositionOnTheBoard(possibleMove)) {
+            if (!isPositionEmpty(possibleMove)) {
+                if (this.isBlack != isPieceBlack(possibleMove))
                     possibleMoves.add(new Point(possibleMove.x, possibleMove.y));
                 break;
             }
