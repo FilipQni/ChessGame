@@ -30,6 +30,7 @@ public class ChessGame implements ActionListener {
         frame.setSize(1200, 800);//400 width and 500 height
         frame.setLayout(null);//using no layout managers
         frame.setVisible(true);//making the frame visible
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void buildTheChessboard() {
