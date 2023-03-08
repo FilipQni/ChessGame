@@ -9,6 +9,7 @@ import java.util.List;
 public class Knight extends Piece {
     public Knight(boolean isBlack, Point coordinates) {
         super(isBlack, coordinates);
+        this.symbol = 'N';
     }
 
     @Override

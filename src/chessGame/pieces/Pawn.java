@@ -13,6 +13,7 @@ public class Pawn extends Piece {
         super(isBlack, coordinates);
         if (isBlack) moveDirection = -1;
         else moveDirection = 1;
+        this.symbol = 'P';
     }
 
     @Override

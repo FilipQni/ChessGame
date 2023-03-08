@@ -10,6 +10,7 @@ import java.util.List;
 public class King extends Piece {
     public King(boolean isBlack, Point coordinates) {
         super(isBlack, coordinates);
+        this.symbol = 'K';
     }
 
     @Override

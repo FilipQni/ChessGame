@@ -9,6 +9,7 @@ import java.util.List;
 public class Bishop extends Piece {
     public Bishop(boolean isBlack, Point coordinates) {
         super(isBlack, coordinates);
+        this.symbol = 'B';
     }
     @Override
     public List<Point> getPossibleMoves(Square[][] board) {

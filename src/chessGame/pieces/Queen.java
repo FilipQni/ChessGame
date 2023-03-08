@@ -9,6 +9,7 @@ import java.util.List;
 public class Queen extends Piece{
     public Queen(boolean isBlack, Point coordinates) {
         super(isBlack, coordinates);
+        this.symbol = 'Q';
     }
 
     @Override

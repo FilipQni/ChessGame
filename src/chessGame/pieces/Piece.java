@@ -1,20 +1,21 @@
 package chessGame.pieces;
 
-import chessGame.Square;
-
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
+
+import static chessGame.ChessGame.setPiece;
 
 public class Piece {
     protected final boolean isBlack;
     protected boolean hasMoved;
     protected Point coordinates;
+    protected char symbol;
 
     public Piece(boolean isBlack, Point coordinates) {
         this.isBlack = isBlack;
-        this.hasMoved = false;
         this.coordinates = coordinates;
+        this.hasMoved = false;
     }
 
     public boolean isBlack() {
@@ -25,21 +26,24 @@ public class Piece {
         return hasMoved;
     }
 
-    public List<Point> getPossibleMoves(Square[][] board) {
+    public List<Point> getPossibleMoves() {
         return new LinkedList<>();
-    }
-
-    public boolean isPositionOnTheBoard(Point coordinates) {
-        return ((coordinates.x >= 0 && coordinates.x <= 7) && (coordinates.y >= 0 && coordinates.y <= 7));
     }
 
     public void setHasMoved() {
         this.hasMoved = true;
     }
 
-    public void move(Square[][] board, Point coordinates){
-        board[coordinates.x][coordinates.y].setPiece(this);
+    public void move(Point coordinates){
+        setPiece(coordinates, this);
         this.coordinates = coordinates;
     }
 
+    public Point getCoordinates(){
+        return this.coordinates;
+    }
+
+    public char getSymbol(){
+        return this.symbol;
+    }
 }
