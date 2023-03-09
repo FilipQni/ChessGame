@@ -1,5 +1,6 @@
 package chessGame;
 
+import chessGame.pieces.King;
 import chessGame.pieces.Piece;
 
 import javax.imageio.ImageIO;
@@ -8,7 +9,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Square extends JButton {
@@ -16,7 +16,7 @@ public class Square extends JButton {
     private static final Color BRIGHT_SQUARE_COLOR = new Color(240, 218, 181, 255);
     private final Point coordinates;
     private Piece piece;
-    private boolean isBlack;
+    private final boolean isBlack;
 
     public Square(Piece piece, Point coordinates) {
         this.piece = piece;
@@ -33,10 +33,6 @@ public class Square extends JButton {
     public void removePiece() {
         this.piece = null;
         this.setIcon(null);
-    }
-
-    public boolean isSquareBlack() {
-        return this.isBlack;
     }
 
     public Point getCoordinates() {
@@ -71,10 +67,13 @@ public class Square extends JButton {
 
         this.setIcon(new ImageIcon(pieceImage));
     }
+    public void setKing(King king){
+        this.piece = king;
+    }
 
-    public List<Point> getPossibleMoves(Square[][] board) {
+    public List<Point> getPossibleMoves() {
 
-        return piece.getPossibleMoves(board);
+        return piece.getPossibleMoves();
     }
 
     public void uncolorTheSquare() {
@@ -86,16 +85,25 @@ public class Square extends JButton {
         setBackground(Color.RED);
     }
 
-    public void setPieceHasMoved(){
+    public void setPieceHasMoved() {
         this.piece.setHasMoved();
     }
 
-    public boolean getPiecehasMoved(){
+    public boolean getPieceHasMoved() {
         return this.piece.getHasMoved();
     }
 
-    public void movePieceHere(Square[][] board, Square previousPosition ){
-        previousPosition.piece.move(board, this.coordinates);
+    public void movePieceHere(Square previousPosition) {
+        previousPosition.piece.move(this.coordinates);
         previousPosition.removePiece();
     }
+
+    public char getPieceSymbol() {
+        return this.piece.getSymbol();
+    }
+
+    public void setEmpty() {
+        this.piece = null;
+    }
+
 }
